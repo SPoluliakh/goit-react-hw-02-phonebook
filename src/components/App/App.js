@@ -1,3 +1,3 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 export class App extends Component {}
