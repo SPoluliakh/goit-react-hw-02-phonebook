@@ -1,66 +1,78 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import ContactForm from '../Form';
+import ContactList from '../ContactList';
+import Filter from '../Filter';
+import { Box } from '../../components/Box';
 
 export class App extends Component {
   state = {
-    contacts: [],
-    name: '',
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
   };
 
   handleInputChange = evt => {
-    this.setState({ name: evt.currentTarget.value });
+    this.setState({ [evt.currentTarget.name]: evt.currentTarget.value });
   };
 
-  addContact = name => {
+  addContact = (name, number) => {
+    const addName = this.state.contacts.map(contact => contact.name);
+    addName.includes(name);
+    if (addName.includes(name)) {
+      return alert(`${name} is already in contacts`);
+    }
     const contact = {
       id: nanoid(),
       name,
+      number,
     };
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
   };
 
-  handleSubmit = evt => {
-    evt.preventDefault();
-    this.addContact(this.state.name);
-    this.reset();
+  findContactbyName = () => {
+    const { filter, contacts } = this.state;
+    const fiterNameToLowerCase = filter.toLowerCase();
+    const findContactsbyName = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(fiterNameToLowerCase)
+    );
+
+    return findContactsbyName;
   };
 
-  reset = () => {
+  deletContact = idx => {
     this.setState(prevState => ({
-      contacts: prevState.contacts,
-      name: '',
+      contacts: prevState.contacts.filter(({ id }) => id !== idx),
     }));
   };
 
   render() {
+    const { filter } = this.state;
+    const renderContactsList = this.findContactbyName();
     return (
-      <>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-            <input
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-          </label>
-          <button type="submit">add new contact</button>
-        </form>
-        <h2>Contacts</h2>
-        <ul>
-          {this.state.contacts.map(({ name, id }) => (
-            <li key={id}>
-              <p>{name}</p>
-            </li>
-          ))}
-        </ul>
-      </>
+      <Box display="flex">
+        <Box
+          marginLeft="auto"
+          marginRight="auto"
+          padding={4}
+          border="phonebook"
+          backgroundColor="phonebookBcg"
+        >
+          <h1>Phonebook</h1>
+          <ContactForm onSubmit={this.addContact} />
+          <Filter filter={filter} onChange={this.handleInputChange} />
+          <ContactList
+            renderItems={renderContactsList}
+            onDelitBtn={this.deletContact}
+          />
+        </Box>
+      </Box>
     );
   }
 }

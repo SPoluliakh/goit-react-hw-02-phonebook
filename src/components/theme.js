@@ -34,10 +34,11 @@ export const theme = Object.freeze({
     profileList: 'rgba(255, 213, 0, 0.73)',
     statsTitle: '#00000099',
     online: 'green',
-    offline: 'red',
+    deletBtn: 'lightcoral',
     tableBorderColor: 'rgb(0, 128, 255)',
     tableBgcHead: '#bcebdd',
     tableBgc: '#f8e391',
+    phonebookBcg: 'lightcyan',
   },
   radii: {
     none: '0',
@@ -46,8 +47,8 @@ export const theme = Object.freeze({
   },
   borders: {
     none: 'none',
-    normal: '1px dashed grey',
-    table: 'solid',
+    phonebook: '2px solid  black',
+    contactForm: '1px dashed black',
   },
   shadows: {
     boxShadow: '#ff9 0px 0px 20px',
