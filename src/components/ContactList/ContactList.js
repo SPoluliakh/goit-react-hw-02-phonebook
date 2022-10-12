@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   List,
   ListItem,
@@ -23,6 +24,16 @@ const ContactList = ({ renderItems, onDelitBtn }) => {
       </List>
     </>
   );
+};
+
+ContactList.propTypes = {
+  renderItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  onDelitBtn: PropTypes.func,
 };
 
 export default ContactList;

@@ -33,7 +33,7 @@ export const theme = Object.freeze({
     profile: 'yellow',
     profileList: 'rgba(255, 213, 0, 0.73)',
     statsTitle: '#00000099',
-    online: 'green',
+
     deletBtn: 'lightcoral',
     tableBorderColor: 'rgb(0, 128, 255)',
     tableBgcHead: '#bcebdd',
@@ -51,7 +51,8 @@ export const theme = Object.freeze({
     contactForm: '1px dashed black',
   },
   shadows: {
-    boxShadow: '#ff9 0px 0px 20px',
+    boxShadow: '0px 0px 4px 3px gray',
     buttonsShadow: ' 0 1px 1px #2d2020',
+    deletButton: '3px 3px 3px 0 red',
   },
 });

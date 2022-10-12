@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Box } from '../../components/Box';
 import {
@@ -8,21 +9,29 @@ import {
 } from './ContactForm.styled';
 
 class ContactForm extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  };
+
   state = {
     name: '',
     number: '',
   };
 
+  // Responsible for updating the state
   handleInputChange = evt => {
-    this.setState({ [evt.currentTarget.name]: evt.currentTarget.value });
+    const { name, value } = evt.currentTarget;
+    this.setState({ [name]: value });
   };
 
+  // Called when the form is submitted
   handleSubmit = evt => {
     evt.preventDefault();
     this.props.onSubmit(this.state.name, this.state.number);
     this.reset();
   };
 
+  // Reset the form inputs
   reset = () => {
     this.setState({
       name: '',

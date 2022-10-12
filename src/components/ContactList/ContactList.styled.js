@@ -29,4 +29,12 @@ export const ListItemBtn = styled.button`
   margin-right: ${p => p.theme.space[2]}px;
   cursor: pointer;
   background-color: ${p => p.theme.colors.deletBtn};
+  transition: box-shadow 150ms linear;
+  padding-left: ${p => p.theme.space[2]}px;
+  padding-right: ${p => p.theme.space[2]}px;
+
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.deletButton};
+  }
 `;

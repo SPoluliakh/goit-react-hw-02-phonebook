@@ -19,4 +19,11 @@ export const FormBtn = styled.button`
   width: 100px;
   margin: 0 auto;
   cursor: pointer;
+  padding: ${p => p.theme.space[1]}px;
+  transition: box-shadow 150ms linear;
+
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.buttonsShadow};
+  }
 `;
