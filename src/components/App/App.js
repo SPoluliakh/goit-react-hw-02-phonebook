@@ -59,7 +59,7 @@ export class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const renderContactsList = this.findContactbyName();
     return (
       <Box display="flex">
@@ -76,6 +76,7 @@ export class App extends Component {
           <ContactForm onSubmit={this.addContact} />
           <Filter filter={filter} onChange={this.handleInputChange} />
           <ContactList
+            contactsQnt={contacts.length}
             renderItems={renderContactsList}
             onDelitBtn={this.deletContact}
           />

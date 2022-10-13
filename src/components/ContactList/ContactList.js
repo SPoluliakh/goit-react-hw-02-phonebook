@@ -6,10 +6,10 @@ import {
   ListItemBtn,
 } from './ContactList.styled';
 
-const ContactList = ({ renderItems, onDelitBtn }) => {
+const ContactList = ({ renderItems, onDelitBtn, contactsQnt }) => {
   return (
     <>
-      <h2>Contacts</h2>
+      <h2>Contacts : {contactsQnt}</h2>
       <List>
         {renderItems.map(({ name, number, id }) => (
           <ListItem key={id}>
