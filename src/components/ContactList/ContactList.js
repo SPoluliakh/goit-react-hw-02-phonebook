@@ -26,11 +26,11 @@ ContactList.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
     })
   ),
   onDelitBtn: PropTypes.func,
   contactsQnt: PropTypes.number.isRequired,
-  id: PropTypes.string,
 };
 
 export default ContactList;
